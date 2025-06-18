@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sequencing Methods - One Time Reveal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .number-box {
+      display: inline-block;
+      margin: 20px;
+      padding: 20px 30px;
+      font-size: 24px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: background 0.3s;
+    }
+    .number-box:hover {
+      background-color: #388e3c;
+    }
+    .number-box.disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .text-box {
+      margin-top: 20px;
+      display: none;
+      font-size: 18px;
+      color: #333;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      width: 60%;
+      background-color: #f9f9f9;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Click on a Number to Reveal the Question</h2>
+
+  <div class="number-box" onclick="revealText(1, this)">1</div>
+  <div class="number-box" onclick="revealText(2, this)">2</div>
+  <div class="number-box" onclick="revealText(3, this)">3</div>
+
+  <div id="text1" class="text-box">
+    <strong>1. Write a detailed note on NGS sequencing methods.</strong><br><br>
+      </div>
+
+  <div id="text2" class="text-box">
+    <strong>2. Write a detailed note on Sanger Sequencing.</strong><br><br>
+  </div>
+
+  <div id="text3" class="text-box">
+    <strong>3. Write a detailed note on Nanopore Sequencing.</strong><br><br>
+      </div>
+
+  <script>
+    let hasSelected = false;
+
+    function revealText(num, el) {
+      if (hasSelected) return; // prevent multiple selections
+
+      // Show the selected box
+      document.getElementById("text" + num).style.display = "block";
+      hasSelected = true;
+
+      // Disable all number boxes
+      const buttons = document.getElementsByClassName("number-box");
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.add("disabled");
+      }
+    }
+  </script>
+
+</body>
+</html>
